@@ -1,0 +1,139 @@
+InitCondFile        ./snap_z1p000
+OutputDir           ./
+OutputListFilename  ../../times.txt
+
+CpuTimeBetRestartFile  10800.0   % seconds
+TimeLimitCPU           10000000  % seconds
+
+ICFormat     1
+SnapFormat   1
+
+NumFilesPerSnapshot       107
+NumFilesWrittenInParallel 64
+
+TimeBegin           0.01     % z=99
+TimeMax	            1.00     % end at z=0
+
+Omega0	            0.3175    % total matter density
+OmegaLambda         0.6825
+OmegaBaryon         0.0000     ; maybe there are no baryons
+HubbleParam         0.6711     ; only needed for cooling
+
+BoxSize             2000000.0
+
+SofteningGas           0.0
+SofteningHalo          31.25
+SofteningDisk          0.0
+SofteningBulge         0.0
+SofteningStars         0.0
+SofteningBndry         0.0
+
+SofteningGasMaxPhys    0.0
+SofteningHaloMaxPhys   31.25
+SofteningDiskMaxPhys   0.0
+SofteningBulgeMaxPhys  0.0
+SofteningStarsMaxPhys  0.0
+SofteningBndryMaxPhys  0.0
+
+PartAllocFactor        1.5
+MaxMemSize	       16000
+BufferSize             120
+
+CoolingOn       0
+StarformationOn 0
+
+ 
+
+
+%%%%%% Accuracy of time integration %%%%%%%
+
+TypeOfTimestepCriterion  0   	                    
+ErrTolIntAccuracy        0.025  
+MaxSizeTimestep          0.025
+MinSizeTimestep          0.0
+
+
+%%%%%%% Tree algorithm and force accuracy %%%%%%%
+
+ErrTolTheta                  0.5
+TypeOfOpeningCriterion       1
+ErrTolForceAcc               0.005
+TreeDomainUpdateFrequency    0.01
+
+
+%%%%%%%% subfind %%%%%%%%%%
+
+%DesLinkNgb              20
+%ErrTolThetaSubfind      0.45
+
+
+%%%%%%%% Parameters of SPH %%%%%%%%
+
+DesNumNgb           33
+MaxNumNgbDeviation  2
+ArtBulkViscConst    1.0
+InitGasTemp         273.0  % initial gas temp in K, only used if not in ICs
+MinGasTemp          10.0    
+CourantFac          0.15
+
+%%%%%%%%% Star formation and winds %%%%%%%%%%
+
+%CritPhysDensity                    0
+%MaxSfrTimescale                    1.5
+%CritOverDensity                    1000.0
+%TempSupernova                      1e+08
+%TempClouds                         1000
+%FactorSN                           0.1
+%FactorEVP                          1000
+%WindEfficiency                     2
+%WindFreeTravelLength               20
+%WindEnergyFraction                 1
+%WindFreeTravelDensFac              0.1
+
+
+%%%%%%%% miscelanous %%%%%%%%
+
+ComovingIntegrationOn   1    % comoving (1) or physical (0)
+PeriodicBoundariesOn    1    % boundary conditions (1) or not (0)
+MinGasHsmlFractional    0.1  % min gas SPH in units of the grav softening
+OutputListOn            1    % snapshots a values in external file
+TimeBetSnapshot         1.   % not used if OutputListOn 1
+TimeOfFirstSnapshot     1.   % not used if OutputListOn 1
+TimeBetStatistics       0.5  % time interval to compute system potential energy 
+MaxRMSDisplacementFac   0.25 % limits the PM time step
+
+
+%%%%%%%%% output files  %%%%%%%%%%
+
+EnergyFile        energy.txt
+InfoFile          info.txt
+TimingsFile       timings.txt
+CpuFile           cpu.txt
+TimebinFile       Timebin.txt
+SnapshotFileBase  snap
+RestartFile       restart
+
+
+%%%%%%%% Resubmission %%%%%%%%%
+
+ResubmitOn        0
+ResubmitCommand   /home/vspringe/autosubmit
+
+
+%%%%%%%%% Linear response neutrinos %%%%%%%%%%
+
+%OmegaBaryonCAMB    0.049
+%KspaceTransferFunction    ./CAMB_TABLES/ics_transfer_99.dat
+%TimeTransfer       0.01
+%InputSpectrum_UnitLength_in_cm  3.085678e24
+%MNue               0.3
+%MNum               0.3
+%MNut               0.3
+
+
+%%%%%%%% System of units %%%%%%%%
+
+UnitLength_in_cm         3.085678e21        ;  1.0 kpc
+UnitMass_in_g            1.989e43           ;  1.0e10 solar masses
+UnitVelocity_in_cm_per_s 1e5                ;  1 km/sec
+GravityConstantInternal  0
