@@ -8,7 +8,7 @@ TimeLimitCPU           10000000  % seconds
 ICFormat     1
 SnapFormat   1
 
-NumFilesPerSnapshot       107
+NumFilesPerSnapshot       160
 NumFilesWrittenInParallel 64
 
 TimeBegin           0.01     % z=99
